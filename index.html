@@ -26,19 +26,31 @@
             overflow-x: hidden;
         }
 
-        /* =========================
+
+        /* =====================================================
            SOBRE
-        ========================= */
+        ===================================================== */
 
         #sobrePantalla {
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background: #3d342d;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #4a4037 0%,
+                    #3d342d 55%,
+                    #302923 100%
+                );
+
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 1s ease, visibility 1s ease;
+
+            transition:
+                opacity 1.2s ease,
+                visibility 1.2s ease;
         }
 
         #sobrePantalla.oculto {
@@ -48,281 +60,590 @@
         }
 
         .sobre-contenedor {
+            width: min(92vw, 520px);
             text-align: center;
-            width: min(90%, 500px);
         }
 
         .sobre {
             position: relative;
-            width: min(90vw, 430px);
-            height: 290px;
+
+            width: min(88vw, 430px);
+            height: 285px;
+
             margin: auto;
-            background: #eee5d8;
-            box-shadow: 0 25px 60px rgba(0,0,0,.35);
+
+            background: #e9dfd1;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.45),
+                0 8px 25px rgba(0,0,0,.18);
+
             cursor: pointer;
-            transition: transform .4s ease;
+
+            transition:
+                transform .5s ease,
+                box-shadow .5s ease;
         }
 
         .sobre:hover {
-            transform: translateY(-5px);
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 38px 90px rgba(0,0,0,.5),
+                0 10px 30px rgba(0,0,0,.2);
         }
+
+        /* Parte trasera */
 
         .sobre-cuerpo {
             position: absolute;
             inset: 0;
-            background: #e9dfd1;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eee5d8,
+                    #e2d5c5
+                );
         }
 
-        .sobre-tapa {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 215px solid transparent;
-            border-right: 215px solid transparent;
-            border-top: 150px solid #d8c9b6;
-            transform-origin: top center;
-            transition: transform 1s ease;
-            z-index: 4;
-        }
-
-        .sobre.abierto .sobre-tapa {
-            transform: rotateX(180deg);
-        }
-
-        .sobre-lateral-izq {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 0;
-            border-top: 145px solid transparent;
-            border-left: 215px solid #d2c1ad;
-            z-index: 2;
-        }
-
-        .sobre-lateral-der {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            width: 0;
-            height: 0;
-            border-top: 145px solid transparent;
-            border-right: 215px solid #d2c1ad;
-            z-index: 2;
-        }
+        /* Carta */
 
         .carta {
             position: absolute;
-            left: 8%;
-            bottom: 0;
-            width: 84%;
+
+            left: 9%;
+            bottom: 8%;
+
+            width: 82%;
             height: 78%;
+
             background: #fffdf9;
-            z-index: 1;
+
+            z-index: 2;
+
             padding: 35px 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,.08);
+
+            box-shadow:
+                0 5px 25px rgba(0,0,0,.12);
+
+            transition:
+                transform 1s ease,
+                bottom 1s ease;
         }
 
         .carta small {
             display: block;
+
+            font-size: 9px;
             letter-spacing: 5px;
-            font-size: 10px;
-            color: #9a805e;
+
+            color: #a98755;
+
             margin-bottom: 12px;
         }
 
         .carta h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 38px;
+
+            font-size: 37px;
+            line-height: .95;
+
             font-weight: 500;
+
             color: #3d342d;
         }
 
         .carta p {
-            margin-top: 10px;
-            font-size: 12px;
-            letter-spacing: 2px;
+            margin-top: 15px;
+
+            font-size: 10px;
+            letter-spacing: 3px;
+
+            color: #786b60;
         }
+
+        /* Laterales del sobre */
+
+        .sobre-lateral-izq {
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 0;
+            height: 0;
+
+            border-top: 142px solid transparent;
+            border-left: 215px solid #d4c4b0;
+
+            z-index: 4;
+        }
+
+        .sobre-lateral-der {
+            position: absolute;
+
+            right: 0;
+            bottom: 0;
+
+            width: 0;
+            height: 0;
+
+            border-top: 142px solid transparent;
+            border-right: 215px solid #d4c4b0;
+
+            z-index: 4;
+        }
+
+        /* Tapa */
+
+        .sobre-tapa {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 0;
+            height: 0;
+
+            border-left: 215px solid transparent;
+            border-right: 215px solid transparent;
+            border-top: 150px solid #cdbba5;
+
+            transform-origin: top center;
+
+            transition:
+                transform 1s cubic-bezier(.4,0,.2,1);
+
+            z-index: 6;
+        }
+
+        /* Sello */
 
         .sello {
             position: absolute;
-            z-index: 10;
+
             top: 108px;
             left: 50%;
+
             transform: translateX(-50%);
+
             width: 58px;
             height: 58px;
+
             border-radius: 50%;
+
             background: #a98755;
+
             color: white;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             font-family: 'Cormorant Garamond', serif;
-            font-size: 22px;
-            border: 3px solid #d8c9b6;
-            transition: opacity .5s ease;
+            font-size: 23px;
+
+            border: 3px solid #e5d7c5;
+
+            z-index: 10;
+
+            box-shadow:
+                0 5px 15px rgba(0,0,0,.15);
+
+            transition:
+                opacity .5s ease,
+                transform .7s ease;
+        }
+
+        /* Animación */
+
+        .sobre.abierto .sobre-tapa {
+            transform: rotateX(180deg);
         }
 
         .sobre.abierto .sello {
             opacity: 0;
+            transform:
+                translateX(-50%)
+                scale(.7);
+        }
+
+        .sobre.abierto .carta {
+            bottom: 18%;
         }
 
         .texto-abrir {
             margin-top: 35px;
-            color: #e9dfd1;
-            font-size: 12px;
+
+            color: #eee5d8;
+
+            font-size: 11px;
+
             letter-spacing: 4px;
+
             text-transform: uppercase;
+
+            opacity: .9;
+
+            animation:
+                respirar 2.5s ease-in-out infinite;
         }
 
-        /* =========================
+        @keyframes respirar {
+
+            0%,100% {
+                opacity: .55;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+
+        /* =====================================================
            HERO
-        ========================= */
-
-        section {
-            padding: 100px 20px;
-        }
+        ===================================================== */
 
         .hero {
             min-height: 100vh;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             text-align: center;
+
             background:
-                linear-gradient(rgba(61,52,45,.35), rgba(61,52,45,.35)),
+                linear-gradient(
+                    rgba(61,52,45,.40),
+                    rgba(61,52,45,.40)
+                ),
                 url("foto1.jpeg") center/cover no-repeat;
+
             color: white;
+
+            position: relative;
         }
 
         .hero-contenido {
-            max-width: 850px;
+            max-width: 950px;
+
+            padding: 30px;
         }
 
         .hero small {
             letter-spacing: 7px;
+
             font-size: 11px;
         }
 
         .hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(60px, 10vw, 105px);
+
+            font-size:
+                clamp(60px, 10vw, 105px);
+
             font-weight: 400;
+
             line-height: .95;
-            margin: 25px 0;
+
+            margin: 28px 0;
         }
 
         .hero p {
             font-size: 15px;
+
             letter-spacing: 4px;
+
+            margin-bottom: 38px;
         }
 
-        /* =========================
+        .hero-boton {
+            display: inline-block;
+
+            padding: 15px 32px;
+
+            border:
+                1px solid rgba(255,255,255,.8);
+
+            color: white;
+
+            text-decoration: none;
+
+            letter-spacing: 2px;
+
+            font-size: 11px;
+
+            transition: .4s ease;
+        }
+
+        .hero-boton:hover {
+            background: white;
+            color: #3d342d;
+        }
+
+        .desliza {
+            position: absolute;
+
+            bottom: 30px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            font-size: 10px;
+
+            letter-spacing: 4px;
+
+            animation:
+                subirBajar 2s infinite;
+        }
+
+        @keyframes subirBajar {
+
+            0%,100% {
+                transform:
+                    translateX(-50%)
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateX(-50%)
+                    translateY(7px);
+            }
+        }
+
+
+        /* =====================================================
            INTRO
-        ========================= */
+        ===================================================== */
+
+        section {
+            padding: 100px 20px;
+        }
 
         .intro {
             text-align: center;
+
             background: #f7f2eb;
         }
 
         .intro .corazon {
             color: #a98755;
+
             font-size: 30px;
+
             margin-bottom: 20px;
         }
 
         .intro h2,
         .galeria h2,
         .detalles h2,
-        .confirmacion h2 {
-            font-family: 'Cormorant Garamond', serif;
+        .confirmacion h2,
+        .contador h2 {
+
+            font-family:
+                'Cormorant Garamond',
+                serif;
+
             font-weight: 500;
-            font-size: clamp(48px, 7vw, 75px);
+
+            font-size:
+                clamp(48px, 7vw, 75px);
+
             margin-bottom: 25px;
         }
 
         .intro p {
             max-width: 700px;
+
             margin: auto;
+
             line-height: 2;
+
             font-size: 15px;
+
             color: #665b52;
         }
 
-        /* =========================
-           DATOS
-        ========================= */
+
+        /* =====================================================
+           DETALLES
+        ===================================================== */
 
         .detalles {
             background: #3d342d;
-            color: #fff;
+
+            color: white;
+
             text-align: center;
         }
 
         .detalles h2 {
-            color: #fff;
+            color: white;
         }
 
         .datos {
             max-width: 900px;
+
             margin: 50px auto 0;
+
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 25px;
         }
 
         .dato {
             padding: 30px 20px;
-            border: 1px solid rgba(255,255,255,.2);
+
+            border:
+                1px solid rgba(255,255,255,.2);
         }
 
         .dato span {
             display: block;
+
             color: #c6a36c;
+
             font-size: 12px;
+
             letter-spacing: 3px;
+
             margin-bottom: 15px;
         }
 
         .dato strong {
-            font-family: 'Cormorant Garamond', serif;
+            font-family:
+                'Cormorant Garamond',
+                serif;
+
             font-size: 27px;
+
             font-weight: 500;
         }
 
-        /* =========================
+
+        /* =====================================================
+           CONTADOR
+        ===================================================== */
+
+        .contador {
+            text-align: center;
+
+            background: #f7f2eb;
+        }
+
+        .contador h2 {
+            color: #3d342d;
+        }
+
+        .contador-subtitulo {
+            color: #786b60;
+
+            margin-bottom: 50px;
+        }
+
+        .contador-grid {
+            max-width: 900px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        .contador-item {
+            background: #fffdf9;
+
+            border:
+                1px solid #d8c9b6;
+
+            padding: 30px 15px;
+
+            box-shadow:
+                0 5px 20px rgba(61,52,45,.05);
+        }
+
+        .contador-numero {
+            display: block;
+
+            font-family:
+                'Cormorant Garamond',
+                serif;
+
+            font-size: 58px;
+
+            line-height: 1;
+
+            color: #a98755;
+        }
+
+        .contador-label {
+            display: block;
+
+            margin-top: 12px;
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            color: #665b52;
+        }
+
+
+        /* =====================================================
            GALERÍA
-        ========================= */
+        ===================================================== */
 
         .galeria {
             background: #f7f2eb;
+
             text-align: center;
         }
 
         .galeria-subtitulo {
             color: #786b60;
+
             margin-bottom: 50px;
         }
 
         .grid-fotos {
             max-width: 1100px;
+
             margin: auto;
+
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
             gap: 20px;
         }
 
         .foto {
             width: 100%;
+
             height: 430px;
+
             object-fit: cover;
+
             display: block;
+
             background: #e5ddd3;
-            transition: transform .4s ease;
+
+            transition:
+                transform .4s ease;
+
+            border-radius: 2px;
         }
 
         .foto:hover {
@@ -331,78 +652,106 @@
 
         .foto-grande {
             grid-column: span 2;
+
             height: 600px;
         }
 
-        /* =========================
+
+        /* =====================================================
            CONFIRMACIÓN
-        ========================= */
+        ===================================================== */
 
         .confirmacion {
             text-align: center;
+
             background: #eee5d8;
         }
 
         .confirmacion p {
             max-width: 650px;
-            margin: 0 auto 30px;
+
+            margin:
+                0 auto 30px;
+
             line-height: 1.9;
+
             color: #665b52;
         }
 
         .boton {
             display: inline-block;
+
             padding: 16px 35px;
-            border: 1px solid #a98755;
+
+            border:
+                1px solid #a98755;
+
             color: #3d342d;
+
             text-decoration: none;
+
             letter-spacing: 2px;
+
             font-size: 12px;
+
             transition: .3s;
         }
 
         .boton:hover {
             background: #a98755;
+
             color: white;
         }
 
-        /* =========================
-           FINAL
-        ========================= */
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
 
         footer {
             background: #3d342d;
+
             color: white;
+
             text-align: center;
+
             padding: 90px 20px;
         }
 
         footer small {
             letter-spacing: 5px;
+
             color: #c6a36c;
         }
 
         footer h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family:
+                'Cormorant Garamond',
+                serif;
+
             font-size: 55px;
+
             font-weight: 400;
+
             margin: 20px 0;
         }
 
         footer p {
             color: #d9d0c6;
+
             letter-spacing: 2px;
         }
 
-        /* =========================
+
+        /* =====================================================
            RESPONSIVE
-        ========================= */
+        ===================================================== */
 
         @media (max-width: 700px) {
 
             .sobre {
                 width: 330px;
-                height: 225px;
+                height: 220px;
             }
 
             .sobre-tapa {
@@ -412,17 +761,20 @@
             }
 
             .sobre-lateral-izq {
-                border-top-width: 112px;
+                border-top-width: 110px;
                 border-left-width: 165px;
             }
 
             .sobre-lateral-der {
-                border-top-width: 112px;
+                border-top-width: 110px;
                 border-right-width: 165px;
             }
 
             .sello {
-                top: 84px;
+                top: 82px;
+
+                width: 52px;
+                height: 52px;
             }
 
             .carta {
@@ -433,8 +785,21 @@
                 font-size: 30px;
             }
 
+            .texto-abrir {
+                margin-top: 30px;
+            }
+
             .datos {
                 grid-template-columns: 1fr;
+            }
+
+            .contador-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .contador-numero {
+                font-size: 48px;
             }
 
             .grid-fotos {
@@ -444,21 +809,41 @@
             .foto,
             .foto-grande {
                 grid-column: span 1;
+
                 height: 420px;
             }
 
             section {
-                padding: 75px 18px;
+                padding:
+                    75px 18px;
+            }
+
+            .hero h1 {
+                font-size: 58px;
+            }
+
+            .hero small {
+                letter-spacing: 4px;
+            }
+
+            .hero p {
+                font-size: 13px;
+            }
+
+            footer h2 {
+                font-size: 42px;
             }
         }
     </style>
 </head>
 
+
 <body>
 
-    <!-- =========================
-         SOBRE INTERACTIVO
-    ========================= -->
+
+    <!-- =====================================================
+         SOBRE
+    ===================================================== -->
 
     <div id="sobrePantalla">
 
@@ -469,17 +854,34 @@
                 <div class="sobre-cuerpo"></div>
 
                 <div class="carta">
-                    <small>INVITACIÓN</small>
-                    <h2>Luisa Fernanda<br>&<br>Luis Fernando</h2>
-                    <p>Con mucho amor</p>
+
+                    <small>
+                        INVITACIÓN
+                    </small>
+
+                    <h2>
+                        Luisa Fernanda
+                        <br>
+                        &
+                        <br>
+                        Luis Fernando
+                    </h2>
+
+                    <p>
+                        28 · 12 · 2026
+                    </p>
+
                 </div>
 
                 <div class="sobre-lateral-izq"></div>
+
                 <div class="sobre-lateral-der"></div>
 
                 <div class="sobre-tapa"></div>
 
-                <div class="sello">♥</div>
+                <div class="sello">
+                    ♥
+                </div>
 
             </div>
 
@@ -492,74 +894,136 @@
     </div>
 
 
-    <!-- =========================
-         INICIO
-    ========================= -->
+
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
 
     <section class="hero">
 
         <div class="hero-contenido">
 
-            <small>UNA HISTORIA DE AMOR</small>
+            <small>
+                UNA CELEBRACIÓN DE AMOR
+            </small>
 
             <h1>
-                Luisa Fernanda<br>
-                &<br>
+                Luisa Fernanda
+                <br>
+                &
+                <br>
                 Luis Fernando
             </h1>
 
-            <p>28 · 12 · 2026</p>
+            <p>
+                Tenemos el honor de invitarte a compartir
+                este momento tan especial.
+            </p>
 
+            <a
+                href="#bienvenida"
+                class="hero-boton"
+            >
+                ABRIR INVITACIÓN
+            </a>
+
+        </div>
+
+        <div class="desliza">
+            DESLIZA ↓
         </div>
 
     </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          BIENVENIDA
-    ========================= -->
+    ===================================================== -->
 
-    <section class="intro" id="bienvenida">
+    <section
+        class="intro"
+        id="bienvenida"
+    >
 
-        <div class="corazon">♡</div>
+        <div class="corazon">
+            ♡
+        </div>
 
-        <h2>Los esperamos</h2>
+        <h2>
+            Los esperamos
+        </h2>
 
         <p>
-            Hay momentos en la vida que se vuelven inolvidables
-            cuando los compartimos con las personas que más queremos.
+
+            Hay momentos en la vida que se vuelven
+            inolvidables cuando los compartimos con
+            las personas que más queremos.
+
             <br><br>
+
             Queremos celebrar este momento tan especial
             junto a ustedes y agradecerles por acompañarnos
             en el comienzo de esta nueva historia.
+
         </p>
 
     </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          DETALLES
-    ========================= -->
+    ===================================================== -->
 
     <section class="detalles">
 
-        <h2>Un día para recordar</h2>
+        <h2>
+            Un día para recordar
+        </h2>
 
         <div class="datos">
 
             <div class="dato">
-                <span>FECHA</span>
-                <strong>28 de diciembre<br>de 2026</strong>
+
+                <span>
+                    FECHA
+                </span>
+
+                <strong>
+                    28 de diciembre
+                    <br>
+                    de 2026
+                </strong>
+
             </div>
 
-            <div class="dato">
-                <span>HORA</span>
-                <strong>12:00 p. m.</strong>
-            </div>
 
             <div class="dato">
-                <span>CELEBRACIÓN</span>
-                <strong>Con nuestras familias<br>y amigos</strong>
+
+                <span>
+                    HORA
+                </span>
+
+                <strong>
+                    12:00 p. m.
+                </strong>
+
+            </div>
+
+
+            <div class="dato">
+
+                <span>
+                    CELEBRACIÓN
+                </span>
+
+                <strong>
+                    Con nuestras familias
+                    <br>
+                    y amigos
+                </strong>
+
             </div>
 
         </div>
@@ -567,30 +1031,115 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
+         CONTADOR
+    ===================================================== -->
+
+    <section class="contador">
+
+        <h2>
+            La cuenta regresiva
+        </h2>
+
+        <p class="contador-subtitulo">
+
+            Cada día estamos más cerca
+            de compartir este momento tan especial.
+
+        </p>
+
+
+        <div class="contador-grid">
+
+
+            <div class="contador-item">
+
+                <span
+                    class="contador-numero"
+                    id="dias"
+                >
+                    00
+                </span>
+
+                <span class="contador-label">
+                    DÍAS
+                </span>
+
+            </div>
+
+
+            <div class="contador-item">
+
+                <span
+                    class="contador-numero"
+                    id="horas"
+                >
+                    00
+                </span>
+
+                <span class="contador-label">
+                    HORAS
+                </span>
+
+            </div>
+
+
+            <div class="contador-item">
+
+                <span
+                    class="contador-numero"
+                    id="minutos"
+                >
+                    00
+                </span>
+
+                <span class="contador-label">
+                    MINUTOS
+                </span>
+
+            </div>
+
+
+            <div class="contador-item">
+
+                <span
+                    class="contador-numero"
+                    id="segundos"
+                >
+                    00
+                </span>
+
+                <span class="contador-label">
+                    SEGUNDOS
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
          GALERÍA
-    ========================= -->
+    ===================================================== -->
 
     <section class="galeria">
 
-        <h2>Galería</h2>
+        <h2>
+            Galería
+        </h2>
 
         <p class="galeria-subtitulo">
             Algunos momentos de nuestra historia
         </p>
 
+
         <div class="grid-fotos">
 
-            <!--
-                IMPORTANTE:
-                Las fotos están en la misma carpeta que index.html.
-                Por eso se llaman directamente:
-                foto1.jpeg
-                foto2.jpeg
-                foto3.jpeg
-                foto4.jpeg
-                foto5.jpeg
-            -->
 
             <img
                 src="foto1.jpeg"
@@ -598,11 +1147,13 @@
                 class="foto foto-grande"
             >
 
+
             <img
                 src="foto2.jpeg"
                 alt="Momento especial"
                 class="foto"
             >
+
 
             <img
                 src="foto3.jpeg"
@@ -610,11 +1161,13 @@
                 class="foto"
             >
 
+
             <img
                 src="foto4.jpeg"
                 alt="Momento especial"
                 class="foto"
             >
+
 
             <img
                 src="foto5.jpeg"
@@ -622,38 +1175,50 @@
                 class="foto"
             >
 
+
         </div>
 
     </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          CONFIRMACIÓN
-    ========================= -->
+    ===================================================== -->
 
     <section class="confirmacion">
 
-        <h2>Esperamos contar contigo</h2>
+        <h2>
+            Esperamos contar contigo
+        </h2>
 
         <p>
-            Será un día muy especial para nosotros y nos encantará
-            compartirlo contigo.
+
+            Será un día muy especial para nosotros
+            y nos encantará compartirlo contigo.
+
         </p>
 
-        <a href="#bienvenida" class="boton">
+        <a
+            href="#bienvenida"
+            class="boton"
+        >
             VER INVITACIÓN
         </a>
 
     </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          FINAL
-    ========================= -->
+    ===================================================== -->
 
     <footer>
 
-        <small>CON TODO NUESTRO AMOR</small>
+        <small>
+            CON TODO NUESTRO AMOR
+        </small>
 
         <h2>
             Luisa Fernanda & Luis Fernando
@@ -666,28 +1231,148 @@
     </footer>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          JAVASCRIPT
-    ========================= -->
+    ===================================================== -->
 
     <script>
 
-        const sobre = document.getElementById("sobre");
-        const sobrePantalla = document.getElementById("sobrePantalla");
 
-        sobre.addEventListener("click", function () {
+        /* =================================================
+           SOBRE
+        ================================================= */
 
-            sobre.classList.add("abierto");
+        const sobre =
+            document.getElementById("sobre");
 
-            setTimeout(function () {
-                sobrePantalla.classList.add("oculto");
-                document.body.style.overflowY = "auto";
-            }, 900);
+        const sobrePantalla =
+            document.getElementById("sobrePantalla");
 
-        });
 
-        // Mientras el sobre está visible no se puede hacer scroll
-        document.body.style.overflow = "hidden";
+        sobre.addEventListener(
+            "click",
+            function () {
+
+                sobre.classList.add("abierto");
+
+                setTimeout(
+                    function () {
+
+                        sobrePantalla.classList.add("oculto");
+
+                        document.body.style.overflowY =
+                            "auto";
+
+                    },
+                    1000
+                );
+
+            }
+        );
+
+
+        /* Bloquear scroll mientras está el sobre */
+
+        document.body.style.overflow =
+            "hidden";
+
+
+
+        /* =================================================
+           CONTADOR
+        ================================================= */
+
+        const fechaBoda =
+            new Date(
+                "2026-12-28T12:00:00"
+            ).getTime();
+
+
+        function actualizarContador() {
+
+            const ahora =
+                new Date().getTime();
+
+            const diferencia =
+                fechaBoda - ahora;
+
+
+            if (diferencia <= 0) {
+
+                document.getElementById("dias")
+                    .textContent = "00";
+
+                document.getElementById("horas")
+                    .textContent = "00";
+
+                document.getElementById("minutos")
+                    .textContent = "00";
+
+                document.getElementById("segundos")
+                    .textContent = "00";
+
+                return;
+            }
+
+
+            const dias =
+                Math.floor(
+                    diferencia /
+                    (1000 * 60 * 60 * 24)
+                );
+
+
+            const horas =
+                Math.floor(
+                    (diferencia /
+                    (1000 * 60 * 60)) % 24
+                );
+
+
+            const minutos =
+                Math.floor(
+                    (diferencia /
+                    (1000 * 60)) % 60
+                );
+
+
+            const segundos =
+                Math.floor(
+                    (diferencia / 1000) % 60
+                );
+
+
+            document.getElementById("dias")
+                .textContent =
+                String(dias).padStart(2, "0");
+
+
+            document.getElementById("horas")
+                .textContent =
+                String(horas).padStart(2, "0");
+
+
+            document.getElementById("minutos")
+                .textContent =
+                String(minutos).padStart(2, "0");
+
+
+            document.getElementById("segundos")
+                .textContent =
+                String(segundos).padStart(2, "0");
+
+        }
+
+
+        actualizarContador();
+
+
+        setInterval(
+            actualizarContador,
+            1000
+        );
+
 
     </script>
 
